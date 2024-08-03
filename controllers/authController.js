@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-const bcryptjs = require("bcryptjs");
 const saltRounds = 10;
 const User = require("../models/userDetails");
 
@@ -39,8 +38,8 @@ const signUp = async (req, res) => {
 
   const hashGenerate = async (plainpassword) => {
     try {
-      const salt = await bcryptjs.genSalt(saltRounds);
-      const hash = await bcryptjs.hash(plainpassword, salt);
+      const salt = await bcrypt.genSalt(saltRounds);
+      const hash = await bcrypt.hash(plainpassword, salt);
       return hash;
     } catch (error) {
       return error;
